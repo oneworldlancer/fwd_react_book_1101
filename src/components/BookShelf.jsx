@@ -8,8 +8,15 @@ const BookShelf = ({
     iBooksList,
     iBookShelfUpdate }) => {
 
-    const iBookByShelfCategory = iBooksList.filter(iBook => iBook.shelf === iShelfCategory);
 
+
+// #region "Handler"
+
+  const iBookByShelfCategory = iBooksList.filter(iBook => iBook.shelf === iShelfCategory);
+
+ 
+
+// #endregion
     return (
         <div className="bookshelf">
             <h2 className="bookshelf-title">{iTitle}</h2>
@@ -18,8 +25,10 @@ const BookShelf = ({
 
                     {iBookByShelfCategory.map((iBookView) => 
                         <BookBox
+                            key={iBookView.id}
                             iBookView={iBookView}
-                            iBookShelfUpdate={iBookShelfUpdate} />
+                            iBookShelfUpdate={iBookShelfUpdate}
+                            blnBookShelfLine={false} />
                     )}
 
                 </ol>

@@ -33,6 +33,12 @@ body,
   padding: 0 10px 20px;
 }
 
+
+.bookshelf_Search {
+  padding: 0 10px 20px;
+}
+
+
 @media (min-width: 600px) {
   .bookshelf {
     padding: 0 20px 40px;
@@ -135,6 +141,13 @@ body,
 .book-authors {
   color: #999;
 }
+
+
+.book-shelf-line {
+    font-size: 0.8em;
+  color: #000;
+}
+
 
 .book-top {
   position: relative;
