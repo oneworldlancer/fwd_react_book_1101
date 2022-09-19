@@ -26,23 +26,45 @@ const App = () => {
 	// #endregion
 
 	// #region "API"
-
+async function get_AllBooks() {
+					const iBooks = await iBookManager.getAll();
+				 setIBooksList(iBooks);	
+				 window.localStorage.setItem("iBooksList", iBooks);
+					
+			}
 	useEffect(() => {
 		try {
+			
+			 console.log("useEffect");
+			  console.log("window.localStorage.getItem('iBooksList')");
+			console.log(window.localStorage.getItem("iBooksList").length );
+			
+		/*	const data = window.localStorage.getItem("iBooksList");
+ */
+			/* if (data == null) { */
+			
+			
+			get_AllBooks();
+			/* } else {
+				setIBooksList(data);
+			} */
+
 			/* 		
 			setIBookSearchQuery("");
 			setIBooksList([]);
 			setIBooksSearchList([]);
 			setIShowSearchList(false);
 		
-		 */ async function get_AllBooks() {
+		 */
+
+			/* async function get_AllBooks() {
 				const iBooks = await iBookManager.getAll();
 				window.localStorage.setItem("iBooksList", iBooks);
 
 				setIBooksList(iBooks);
 			}
 
-			get_AllBooks();
+			get_AllBooks(); */
 
 			/* if (window.localStorage.getItem("iBooksList") == null) {
 				console.log("sessionStorage-NO");
@@ -71,7 +93,7 @@ const App = () => {
 			/* console.log("sessionStorage-YES");
 			setIBooksList(window.localStorage.getItem("iBooksList")); */
 		}
-	});
+	},[]);
 
 	// #endregion
 

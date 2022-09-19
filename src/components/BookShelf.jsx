@@ -10,20 +10,20 @@ const BookShelf = ({
 
 
 
-// #region "Handler"
+    // #region "Handler"
 
-  const iBookByShelfCategory = iBooksList.filter(iBook => iBook.shelf === iShelfCategory);
+    const iBookByShelfCategory =  iBooksList .filter(iBook => iBook.shelf === iShelfCategory);
 
- 
 
-// #endregion
+
+    // #endregion
     return (
         <div className="bookshelf">
             <h2 className="bookshelf-title">{iTitle}</h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
 
-                    {iBookByShelfCategory.map((iBookView) => 
+                    {iBookByShelfCategory.map((iBookView) =>
                         <BookBox
                             key={iBookView.id}
                             iBookView={iBookView}
