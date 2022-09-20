@@ -95,4 +95,19 @@ This repository is the starter code for _all_ Udacity students. Therefore, we mo
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 =======
 # udacity_book
->>>>>>> e60c5be19cbae410e88fa78ea1f58e19d150363a
+
+- Home page URL:
+    http://localhost:3000/
+    
+    * Search-Page, each book's shelf shown on drop-list.  
+&nbsp;
+- Search page URL:
+    http://localhost:3000/search
+
+    * Search-Page, each book's shelf shown on drop-list.  
+&nbsp;
+### Shaymaa Hafez Ebrahiem
+#### oneworld@ancer@gmail.com
+#### +201221977230
+
+

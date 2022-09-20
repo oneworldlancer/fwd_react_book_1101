@@ -5,9 +5,10 @@ import ShelfList from "./components/ShelfList.jsx";
 import NoPage from "./components/NoPage.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import iDebugManager from "./iUtilityManager/iDebugManager";
-
 import * as iBookManager from "./BooksAPI";
+
 const App = () => {
+	
 	// #region "States-List"
 
 	const [showSearchPage, setShowSearchpage] = useState(false);
@@ -18,32 +19,20 @@ const App = () => {
 
 	// #endregion
 
-	// #region ""
-
-	try {
-	} catch (error) {}
-
-	// #endregion
-
 	// #region "API"
-async function get_AllBooks() {
-					const iBooks = await iBookManager.getAll();
-				 setIBooksList(iBooks);	
-				 window.localStorage.setItem("iBooksList", iBooks);
-					
-			}
+
 	useEffect(() => {
 		try {
-			
-			 console.log("useEffect");
-			  console.log("window.localStorage.getItem('iBooksList')");
-			console.log(window.localStorage.getItem("iBooksList").length );
-			
-		/*	const data = window.localStorage.getItem("iBooksList");
- */
+			iDebugManager.iDebug_Message("useEffect");
+			iDebugManager.iDebug_Message("window.localStorage.getItem('iBooksList')");
+			iDebugManager.iDebug_Message(
+				window.localStorage.getItem("iBooksList").length
+			);
+
+			/*	const data = window.localStorage.getItem("iBooksList");
+			 */
 			/* if (data == null) { */
-			
-			
+
 			get_AllBooks();
 			/* } else {
 				setIBooksList(data);
@@ -67,7 +56,7 @@ async function get_AllBooks() {
 			get_AllBooks(); */
 
 			/* if (window.localStorage.getItem("iBooksList") == null) {
-				console.log("sessionStorage-NO");
+				iDebugManager.iDebug_Message("sessionStorage-NO");
 
 				async function get_AllBooks() {
 					const iBooks = await iBookManager.getAll();
@@ -78,42 +67,43 @@ async function get_AllBooks() {
 
 				get_AllBooks();
 			} else {
-				console.log("sessionStorage-YES");
+				iDebugManager.iDebug_Message("sessionStorage-YES");
 				setIBooksList(window.localStorage.getItem("iBooksList"));
 			} */
 			// const iBooks = await iBookManager.getAll();
 			// setIBooksList(iBooks);
 			// // await	iBookManager.getAll().then((iBooks) => {
 			// // 		setIBooksList(iBooks);
-			// // 		//console.log(iBooks);
+			// // 		//iDebugManager.iDebug_Message(iBooks);
 
 			//// });
 		} catch (error) {
 			iDebugManager.iDebug_Message(error);
-			/* console.log("sessionStorage-YES");
-			setIBooksList(window.localStorage.getItem("iBooksList")); */
 		}
-	},[]);
+	}, []);
 
 	// #endregion
 
 	// #region "CRUD"
 
-	const iBookUpdate = async (iBook, iShelf) => {
-		//.title = `You clicked ${count} times`;
-
+	/* get_AllBooks */
+	async function get_AllBooks() {
+		
 		try {
-			/* 			if (iBooksList.length > 0) {
-				for (let i = 0; i < iBooksList.length; i++) {
-					if (iBooksList[i].id === iBook.id) {
-						iBooksList[i].shelf = iShelf;
-						break;
-					}
+		
+			const iBooks = await iBookManager.getAll();
+			setIBooksList(iBooks);
+			window.localStorage.setItem("iBooksList", iBooks);
+	
+		} catch (error) {
+			iDebugManager.iDebug_Message(error);
+		}
+	}
 
-					setIBooksList(iBooksSearchList);
-				}
-			} */
-
+	/* iBookUpdate */
+	const iBookUpdate = async (iBook, iShelf) => {
+	
+		try {
 			if (iBooksSearchList.length > 0) {
 				for (let i = 0; i < iBooksSearchList.length; i++) {
 					if (iBooksSearchList[i].id === iBook.id) {
@@ -133,17 +123,17 @@ async function get_AllBooks() {
 		}
 	};
 
+	/* set_BookSearchQuery */
 	function set_BookSearchQuery(event) {
 		try {
 			setTimeout(() => {
-				//alert("app.target.value");
+			
 				const iSearchValue = event.target.value;
-				console.log(
+				iDebugManager.iDebug_Message(
 					"iSearchValue.trim().length == " + iSearchValue.trim().length
 				);
 
-				//setIBookSearchQuery(iSearchValue);
-
+			
 				if (iSearchValue.trim() === "") {
 					setIBookSearchQuery("");
 					setIBooksSearchList([]);
@@ -153,26 +143,26 @@ async function get_AllBooks() {
 				}
 			}, 1000);
 
-			//iBookSearch(iSearchValue);
+			
 		} catch (error) {
 			iDebugManager.iDebug_Message(error);
 		}
 	}
 
+	/* iBookSearch */
 	const iBookSearch = async (iSearchValue) => {
-		//.title = `You clicked ${count} times`;
-
+	
 		try {
 			const iBooks_SearchList = await iBookManager.search(iSearchValue, 3);
 
 			if (iBooks_SearchList.length > 0) {
-				/* console.log("iBooks_SearchList");
-				console.log(iBooks_SearchList);
+				/* iDebugManager.iDebug_Message("iBooks_SearchList");
+				iDebugManager.iDebug_Message(iBooks_SearchList);
  */
 				let iBooks_SearchShelfList = iBookSearch_SetShelf(iBooks_SearchList);
 
-				/* console.log("iBooks_SearchShelfList");
-				console.log(iBooks_SearchShelfList);
+				/* iDebugManager.iDebug_Message("iBooks_SearchShelfList");
+				iDebugManager.iDebug_Message(iBooks_SearchShelfList);
  */
 				setIBookSearchQuery(iSearchValue);
 
@@ -183,16 +173,6 @@ async function get_AllBooks() {
 				setIBooksSearchList([]);
 				setIShowSearchList(false);
 			}
-
-			/* else {
-						setIBookSearchQuery("");
-			setIBooksSearchList([]);
-					return "";
-				} */
-
-			//alert("event.target.value");
-
-			//console.log(iBooks);
 		} catch (error) {
 			setIBookSearchQuery(iSearchValue);
 			setIBooksSearchList([]);
@@ -202,126 +182,127 @@ async function get_AllBooks() {
 		}
 	};
 
+	/* iBookSearch_SetShelf */
 	function iBookSearch_SetShelf(iBooks_SearchList) {
-		let arrBooks_SearchShelfList = [];
+		try {
+			let arrBooks_SearchShelfList = [];
 
-		/* 		console.log("iBooks_SearchList");
-		console.log(iBooks_SearchList);
+			/* 		iDebugManager.iDebug_Message("iBooks_SearchList");
+		iDebugManager.iDebug_Message(iBooks_SearchList);
 	
 	
-		console.log("iBooksList");
+		iDebugManager.iDebug_Message("iBooksList");
 		
-		console.log(iBooksList.length);
-		console.log(iBooksList); */
+		iDebugManager.iDebug_Message(iBooksList.length);
+		iDebugManager.iDebug_Message(iBooksList); */
 
-		for (let i = 0; i < iBooks_SearchList.length; i++) {
-			iBooksList.forEach((iBookView) => {
-				//iBookView.shelf = "SHAYMAA";
-				//console.log(iBookView);
+			for (let i = 0; i < iBooks_SearchList.length; i++) {
+				iBooksList.forEach((iBookView) => {
+					//iBookView.shelf = "SHAYMAA";
+					//iDebugManager.iDebug_Message(iBookView);
 
-				if (iBookView.id === iBooks_SearchList[i].id) {
-					console.log("iBookView-found");
-					console.log(iBookView);
+					if (iBookView.id === iBooks_SearchList[i].id) {
+						iDebugManager.iDebug_Message("iBookView-found");
+						iDebugManager.iDebug_Message(iBookView);
 
-					iBooks_SearchList[i].shelf = iBookView.shelf;
-				} else {
-					iBooks_SearchList[i].shelf = "none";
-				}
-			});
+						iBooks_SearchList[i].shelf = iBookView.shelf;
+					} else {
+						iBooks_SearchList[i].shelf = "none";
+					}
+				});
 
-			console.log("iBooks_SearchList[i]-found");
-			console.log(iBooks_SearchList[i]);
+				iDebugManager.iDebug_Message("iBooks_SearchList[i]-found");
+				iDebugManager.iDebug_Message(iBooks_SearchList[i]);
 
-			/* console.log("iBooks_SearchList[i]");
-			console.log(iBooks_SearchList[i]); */
-			arrBooks_SearchShelfList.push(iBooks_SearchList[i]);
+				/* iDebugManager.iDebug_Message("iBooks_SearchList[i]");
+			iDebugManager.iDebug_Message(iBooks_SearchList[i]); */
+				arrBooks_SearchShelfList.push(iBooks_SearchList[i]);
+			}
+
+			return arrBooks_SearchShelfList;
+		} catch (error) {
+			iDebugManager.iDebug_Message(error);
 		}
-
-		return arrBooks_SearchShelfList;
 	}
 
 	// #endregion
 
 	// #region "Routes"
 
+	/* click_HomePage */
 	const click_HomePage = (event) => {
-		console.log("Link click_HomePage");
-		console.log(event.currentTarget);
-		setIBookSearchQuery("");
-		setIBooksSearchList([]);
-		setIShowSearchList(false);
-
-		// 👇️ refers to the link element
+		try {
+			iDebugManager.iDebug_Message("Link click_HomePage");
+			iDebugManager.iDebug_Message(event.currentTarget);
+			setIBookSearchQuery("");
+			setIBooksSearchList([]);
+			setIShowSearchList(false);
+		} catch (error) {
+			iDebugManager.iDebug_Message(error);
+		}
 	};
 
+	/* click_SearchPage */
 	const click_SearchPage = (event) => {
-		console.log("Link click_SearchPage");
+		try {
+			iDebugManager.iDebug_Message("Link click_SearchPage");
 
-		// 👇️ refers to the link element
-		console.log(event.currentTarget);
-		setIBookSearchQuery("");
-		setIBooksSearchList([]);
-		setIShowSearchList(true);
+			iDebugManager.iDebug_Message(event.currentTarget);
+			setIBookSearchQuery("");
+			setIBooksSearchList([]);
+			setIShowSearchList(true);
+		} catch (error) {
+			iDebugManager.iDebug_Message(error);
+		}
 	};
 
 	// #endregion
 
-	return (
-		<div className="app">
-			<BrowserRouter>
-				<Routes>
-					<Route
-						path="*"
-						element={<NoPage />}
-					/>
+	// #region "Render"
 
-					<Route
-						path="/search"
-						element={
-							<SearchBook
-								iBookSearchQuery={iBookSearchQuery}
-								iOnBookSearchQuery={set_BookSearchQuery}
-								iBooksSearchList={iBooksSearchList}
-								iOnBookShelfUpdate={iBookUpdate}
-								iShowSearchList={iShowSearchList}
-								iOnClick_HomePage={click_HomePage}
-							/>
-						}
-					/>
+	try {
+		return (
+			<div className="app">
+				<BrowserRouter>
+					<Routes>
+						<Route
+							path="*"
+							element={<NoPage />}
+						/>
 
-					<Route
-						exact
-						path="/"
-						element={
-							<ShelfList
-								iBooksList={iBooksList}
-								iOnBookShelfUpdate={iBookUpdate}
-								iOnClick_SearchPage={click_SearchPage}
-							/>
-						}></Route>
-				</Routes>
-			</BrowserRouter>
-		</div>
-		/* 		<div className="app">
-			{showSearchPage ? (
-				<SearchBook />
-			) : (
-			
-				<div className="list-books">
-					<div className="list-books-title">
-						<h1>MyReads</h1>
-					</div>
-					<div className="list-books-content">
-            <BookList/>
-				
-					</div>
-					<div className="open-search">
-						<a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
-					</div>
-				</div>
-			)}
-		</div> */
-	);
+						<Route
+							path="/search"
+							element={
+								<SearchBook
+									iBookSearchQuery={iBookSearchQuery}
+									iBooksSearchList={iBooksSearchList}
+									iOnBookSearchQuery={set_BookSearchQuery}
+									iOnBookShelfUpdate={iBookUpdate}
+									iShowSearchList={iShowSearchList}
+									iOnClick_HomePage={click_HomePage}
+								/>
+							}
+						/>
+
+						<Route
+							exact
+							path="/"
+							element={
+								<ShelfList
+									iBooksList={iBooksList}
+									iOnBookShelfUpdate={iBookUpdate}
+									iOnClick_SearchPage={click_SearchPage}
+								/>
+							}></Route>
+					</Routes>
+				</BrowserRouter>
+			</div>
+		);
+	} catch (error) {
+		iDebugManager.iDebug_Message(error);
+	}
+
+	// #endregion
 };
 
 export default App;

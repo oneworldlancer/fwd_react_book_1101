@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BookShelf from "./BookShelf.jsx";
+import iDebugManager from "../iUtilityManager/iDebugManager";
+import PropTypes from "prop-types";
 
-const ShelfList = ({ iBooksList, iOnBookShelfUpdate, iOnClick_SearchPage }) => {
-	
-	//console.log("ShelfList == " + { iBooksList });
+const ShelfList = ({ 
+	iBooksList, 
+	iOnBookShelfUpdate,
+	iOnClick_SearchPage }) => {
 
-	//onClick={() => setShowSearchpage(!showSearchPage)}
+	// #region "Render"
+
 	return (
 		<div className="list-books">
 			<div className="list-books-title">
@@ -21,7 +25,7 @@ const ShelfList = ({ iBooksList, iOnBookShelfUpdate, iOnClick_SearchPage }) => {
 						iTitle="Currently Reading"
 						iShelfCategory="currentlyReading"
 						iBooksList={iBooksList}
-            iBookShelfUpdate={iOnBookShelfUpdate}
+						iBookShelfUpdate={iOnBookShelfUpdate}
 					/>
 
 					{/* (2) Want to Read */}
@@ -30,7 +34,7 @@ const ShelfList = ({ iBooksList, iOnBookShelfUpdate, iOnClick_SearchPage }) => {
 						iTitle="Want to Read"
 						iShelfCategory="wantToRead"
 						iBooksList={iBooksList}
-            iBookShelfUpdate={iOnBookShelfUpdate}
+						iBookShelfUpdate={iOnBookShelfUpdate}
 					/>
 
 					{/* (3) Read */}
@@ -39,8 +43,8 @@ const ShelfList = ({ iBooksList, iOnBookShelfUpdate, iOnClick_SearchPage }) => {
 						iTitle="Read"
 						iShelfCategory="read"
 						iBooksList={iBooksList}
-				    iBookShelfUpdate={iOnBookShelfUpdate}
-						/>
+						iBookShelfUpdate={iOnBookShelfUpdate}
+					/>
 				</div>
 			</div>
 			<div className="open-search">
@@ -50,11 +54,18 @@ const ShelfList = ({ iBooksList, iOnBookShelfUpdate, iOnClick_SearchPage }) => {
 			</div>
 		</div>
 	);
+
+	// #endregion
 };
-/* onClick={() => setShowSearchpage(!showSearchPage)} */
-/* list.propTypes = {
-    //iContacts: PropTypes.array.isRequired,
-    //: PropTypes.func.isRequired,
-}; */
+
+// #region "PropTypes"
+
+ShelfList.propTypes = {
+	iBooksList: PropTypes.array.isRequired,
+	iOnBookShelfUpdate: PropTypes.func.isRequired,
+	iOnClick_SearchPage: PropTypes.func.isRequired,
+};
+
+// #endregion
 
 export default ShelfList;
