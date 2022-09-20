@@ -99,7 +99,7 @@ For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 - Home page URL:
     http://localhost:3000/
     
-    * Search-Page, each book's shelf shown on drop-list.  
+    * Home-Page, each book's shelf shown on drop-list.  
 &nbsp;
 - Search page URL:
     http://localhost:3000/search
