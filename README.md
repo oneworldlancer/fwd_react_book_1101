@@ -96,8 +96,15 @@ This repository is the starter code for _all_ Udacity students. Therefore, we mo
 # udacity_book
 
 - Home page URL:
+<<<<<<< HEAD
   http://localhost:3000/ \* Home-Page, each book's shelf shown on drop-list.
   &nbsp;
+=======
+    http://localhost:3000/
+    
+    * Home-Page, each book's shelf shown on drop-list.  
+&nbsp;
+>>>>>>> 94f34decb2331ba4be18464c2e03c4a561dad7e6
 - Search page URL:
   http://localhost:3000/search
 
