@@ -1,14 +1,13 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import SearchBook from "./components/SearchBook.jsx";
-import ShelfList from "./components/ShelfList.jsx";
-import NoPage from "./components/NoPage.jsx";
+import SearchBook from "./components/SearchBook";
+import ShelfList from "./components/ShelfList";
+import NoPage from "./components/NoPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import iDebugManager from "./iUtilityManager/iDebugManager";
 import * as iBookManager from "./BooksAPI";
 
 const App = () => {
-	
 	// #region "States-List"
 
 	const [showSearchPage, setShowSearchpage] = useState(false);
@@ -24,59 +23,8 @@ const App = () => {
 	useEffect(() => {
 		try {
 			iDebugManager.iDebug_Message("useEffect");
-			iDebugManager.iDebug_Message("window.localStorage.getItem('iBooksList')");
-			iDebugManager.iDebug_Message(
-				window.localStorage.getItem("iBooksList").length
-			);
-
-			/*	const data = window.localStorage.getItem("iBooksList");
-			 */
-			/* if (data == null) { */
 
 			get_AllBooks();
-			/* } else {
-				setIBooksList(data);
-			} */
-
-			/* 		
-			setIBookSearchQuery("");
-			setIBooksList([]);
-			setIBooksSearchList([]);
-			setIShowSearchList(false);
-		
-		 */
-
-			/* async function get_AllBooks() {
-				const iBooks = await iBookManager.getAll();
-				window.localStorage.setItem("iBooksList", iBooks);
-
-				setIBooksList(iBooks);
-			}
-
-			get_AllBooks(); */
-
-			/* if (window.localStorage.getItem("iBooksList") == null) {
-				iDebugManager.iDebug_Message("sessionStorage-NO");
-
-				async function get_AllBooks() {
-					const iBooks = await iBookManager.getAll();
-					window.localStorage.setItem("iBooksList", iBooks);
-
-					setIBooksList(iBooks);
-				}
-
-				get_AllBooks();
-			} else {
-				iDebugManager.iDebug_Message("sessionStorage-YES");
-				setIBooksList(window.localStorage.getItem("iBooksList"));
-			} */
-			// const iBooks = await iBookManager.getAll();
-			// setIBooksList(iBooks);
-			// // await	iBookManager.getAll().then((iBooks) => {
-			// // 		setIBooksList(iBooks);
-			// // 		//iDebugManager.iDebug_Message(iBooks);
-
-			//// });
 		} catch (error) {
 			iDebugManager.iDebug_Message(error);
 		}
@@ -88,13 +36,9 @@ const App = () => {
 
 	/* get_AllBooks */
 	async function get_AllBooks() {
-		
 		try {
-		
 			const iBooks = await iBookManager.getAll();
 			setIBooksList(iBooks);
-			window.localStorage.setItem("iBooksList", iBooks);
-	
 		} catch (error) {
 			iDebugManager.iDebug_Message(error);
 		}
@@ -102,7 +46,6 @@ const App = () => {
 
 	/* iBookUpdate */
 	const iBookUpdate = async (iBook, iShelf) => {
-	
 		try {
 			if (iBooksSearchList.length > 0) {
 				for (let i = 0; i < iBooksSearchList.length; i++) {
@@ -127,13 +70,11 @@ const App = () => {
 	function set_BookSearchQuery(event) {
 		try {
 			setTimeout(() => {
-			
 				const iSearchValue = event.target.value;
 				iDebugManager.iDebug_Message(
 					"iSearchValue.trim().length == " + iSearchValue.trim().length
 				);
 
-			
 				if (iSearchValue.trim() === "") {
 					setIBookSearchQuery("");
 					setIBooksSearchList([]);
@@ -142,8 +83,6 @@ const App = () => {
 					iBookSearch(iSearchValue);
 				}
 			}, 1000);
-
-			
 		} catch (error) {
 			iDebugManager.iDebug_Message(error);
 		}
@@ -151,7 +90,6 @@ const App = () => {
 
 	/* iBookSearch */
 	const iBookSearch = async (iSearchValue) => {
-	
 		try {
 			const iBooks_SearchList = await iBookManager.search(iSearchValue, 3);
 

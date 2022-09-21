@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import BookShelf from "./BookShelf.jsx";
+import BookShelf from "./BookShelf";
 import iDebugManager from "../iUtilityManager/iDebugManager";
 import PropTypes from "prop-types";
 
@@ -25,7 +25,7 @@ const ShelfList = ({
 						iTitle="Currently Reading"
 						iShelfCategory="currentlyReading"
 						iBooksList={iBooksList}
-						iBookShelfUpdate={iOnBookShelfUpdate}
+						iOnBookShelfUpdate={iOnBookShelfUpdate}
 					/>
 
 					{/* (2) Want to Read */}
@@ -34,7 +34,7 @@ const ShelfList = ({
 						iTitle="Want to Read"
 						iShelfCategory="wantToRead"
 						iBooksList={iBooksList}
-						iBookShelfUpdate={iOnBookShelfUpdate}
+						iOnBookShelfUpdate={iOnBookShelfUpdate}
 					/>
 
 					{/* (3) Read */}
@@ -43,14 +43,16 @@ const ShelfList = ({
 						iTitle="Read"
 						iShelfCategory="read"
 						iBooksList={iBooksList}
-						iBookShelfUpdate={iOnBookShelfUpdate}
+						iOnBookShelfUpdate={iOnBookShelfUpdate}
 					/>
 				</div>
 			</div>
 			<div className="open-search">
 				<Link
 					to="/search"
-					onClick={iOnClick_SearchPage} >Add a book</Link>
+					onClick={iOnClick_SearchPage}>
+					Add a book
+				</Link>
 			</div>
 		</div>
 	);

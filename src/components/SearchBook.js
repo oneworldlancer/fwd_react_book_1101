@@ -40,15 +40,15 @@ const SearchBook = ({
 							<BookBox
 								key={iBookView.id}
 								iBookView={iBookView}
-								iBookShelfUpdate={iOnBookShelfUpdate}
-								blnBookShelfLine={true} />
+								iOnBookShelfUpdate={iOnBookShelfUpdate}
+								blnBookShelfLine={true}
+							/>
 						))}
 					</ol>
 				) : (
 					<div>No Books found</div>
 				)}
 			</div>
-
 		</div>
 	);
 
