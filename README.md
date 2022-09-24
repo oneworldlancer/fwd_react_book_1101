@@ -114,6 +114,6 @@ This repository is the starter code for _all_ Udacity students. Therefore, we mo
 
 ### Shaymaa Hafez Ebrahiem
 
-#### oneworld@ancer@gmail.com
+#### oneworldlancer@gmail.com
 
 #### +201221977230
